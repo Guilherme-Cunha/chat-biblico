@@ -17,13 +17,13 @@
 
     <!-- Mensagens -->
     <div class="flex-1 p-4 overflow-y-auto space-y-3" id="messages">
-      <div v-for="(msg, index) in messages" :key="index" class="flex"
-           :class="msg.from === 'user' ? 'justify-end' : 'justify-start'">
+      <div v-for="(messages, index) in messages" :key="index" class="flex"
+           :class="messages.from === 'user' ? 'justify-end' : 'justify-start'">
         
-        <div :class="msg.from === 'user' 
+        <div :class="messages.from === 'user' 
                       ? 'bg-blue-600 text-white rounded-2xl p-3 max-w-[75%] text-right shadow-md' 
                       : 'bg-gray-200 text-gray-900 rounded-2xl p-3 max-w-[75%] text-left shadow-md'">
-          {{ msg.text }}
+          {{ messages.text }}
         </div>
       </div>
     </div>
@@ -46,4 +46,5 @@
   <script src="index.js"></script>
 </body>
 </html>
+
 
