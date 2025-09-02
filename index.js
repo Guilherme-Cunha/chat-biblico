@@ -23,13 +23,20 @@ createApp({
         const response = await fetch(this.backendUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ question: text })
+          body: JSON.stringify({
+            messages: [
+              { role: "user", content: text }
+            ]
+          })
         });
 
         const data = await response.json();
-        const reply = data.answer || "Não encontrei uma resposta.";
+
+        // pega a resposta do bot
+        const reply = data.reply?.content || "Não encontrei uma resposta.";
         this.messages.push({ from: "bot", text: reply });
 
+        // rola o scroll para o final
         this.$nextTick(() => {
           const messagesDiv = document.getElementById("messages");
           messagesDiv.scrollTop = messagesDiv.scrollHeight;
